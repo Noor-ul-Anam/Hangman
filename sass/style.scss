@@ -1,0 +1,72 @@
+// sass --watch sass/style.scss:css/style.css
+
+*{
+    box-sizing: border-box;
+    margin: 0; 
+}
+body{
+    font-family: sans-serif;
+}
+// ---- Variables -----
+$DarkBrown:#61431c;
+$primaryColor : white ;
+$fontColor: whitesmoke;
+
+//-----Mixins ---
+.wrapper{
+    .mainHeading{
+        background-color: $DarkBrown;
+        color: $fontColor;
+        text-align: center;
+        padding: 40px;
+    }
+    .content{
+        display: flex;
+        .primary{
+            padding: 150px 20px ;
+            background-color: $primaryColor;
+            flex: 3;
+            h1{
+                text-align: center;
+                font-size: 50px;
+            }
+            p{
+                text-align: center;
+                font-size: 40px;
+            }
+            #keyboard{
+                position: relative;
+                margin: auto;
+                padding: 10px;
+                text-align: center;
+                .wordKB{
+                    border-radius: 25px;
+                    display: inline-block;
+                    width: 6%;
+                    height: 5%;
+                    background-color: black;
+                    margin: 7px;
+                    & p{
+                        margin: 10px;
+                        font-size: 20px;
+                        color: $fontColor;
+                        cursor: pointer;
+                    }  
+                  }
+            }
+        }
+        .secondary{
+            background-color: $primaryColor; 
+            flex: 2;
+            .img{
+                margin: 20px;
+                padding: 20px;
+                p{
+                    text-align: center;
+                    font: 5em/0.8em sans-serif; 
+                    display: none;
+                }
+            }
+        }
+    }
+}
