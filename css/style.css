@@ -6,7 +6,7 @@ body {
   font-family: sans-serif; }
 
 .wrapper .mainHeading {
-  background-color: #61431c;
+  background-color: #3d2a12;
   color: whitesmoke;
   text-align: center;
   padding: 40px; }
@@ -17,9 +17,10 @@ body {
     background-color: white;
     flex: 3; }
     .wrapper .content .primary h1 {
-      text-align: center;
-      font-size: 50px; }
+      color: #3d2a12;
+      text-align: center; }
     .wrapper .content .primary p {
+      color: #3d2a12;
       text-align: center;
       font-size: 40px; }
     .wrapper .content .primary #keyboard {
@@ -31,8 +32,8 @@ body {
         border-radius: 25px;
         display: inline-block;
         width: 6%;
-        height: 5%;
-        background-color: black;
+        height: 4%;
+        background-color: #3d2a12;
         margin: 7px; }
         .wrapper .content .primary #keyboard .wordKB p {
           margin: 10px;

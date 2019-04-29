@@ -8,7 +8,7 @@ body{
     font-family: sans-serif;
 }
 // ---- Variables -----
-$DarkBrown:#61431c;
+$DarkBrown:#3d2a12;
 $primaryColor : white ;
 $fontColor: whitesmoke;
 
@@ -27,10 +27,11 @@ $fontColor: whitesmoke;
             background-color: $primaryColor;
             flex: 3;
             h1{
+                color: $DarkBrown;
                 text-align: center;
-                font-size: 50px;
             }
             p{
+                color: $DarkBrown;
                 text-align: center;
                 font-size: 40px;
             }
@@ -43,8 +44,8 @@ $fontColor: whitesmoke;
                     border-radius: 25px;
                     display: inline-block;
                     width: 6%;
-                    height: 5%;
-                    background-color: black;
+                    height: 4%;
+                    background-color: $DarkBrown;
                     margin: 7px;
                     & p{
                         margin: 10px;
