@@ -13,12 +13,10 @@ let keyboardAlphabet= () => {
          countForAscii++;
       }
       alphabet();
-      element.innerHTML += `<div class="wordKB" id="${alphabetArr[i]}">`+`<p>${alphabetArr[i]}</p>`+`</div>`;
+      element.innerHTML += `<div class="wordKB"  id="${alphabetArr[i]}">`+`<p>${alphabetArr[i]}</p>`+`</div>`;
    }
 }
 keyboardAlphabet();
-console.log(parseInt(Math.random()*10));
-console.log(words[0].length);
 
 // --- Guess words ---
 let dash = () => {
@@ -28,3 +26,7 @@ let dash = () => {
    }
 }
 dash();
+
+//-- some consoles ---
+console.log(parseInt(Math.random()*10));
+console.log(words[0].length);
