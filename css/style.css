@@ -12,6 +12,8 @@ body {
   padding: 40px; }
 .wrapper .content {
   display: flex; }
+  .wrapper .content .modal {
+    visibility: hidden; }
   .wrapper .content .primary {
     padding: 120px 20px;
     background-color: white;

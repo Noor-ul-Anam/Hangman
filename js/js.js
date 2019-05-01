@@ -1,5 +1,5 @@
 let alphabetArr = []; // All alphabets in keyboard are stored here..
-let words = ['bracken']; // all words in hngman 
+let words = ['volvolo']; // all words in hngman 
 let guessWord = [];// the word guessed
 let mistakeArr = []; // mistaken letters stored here .. limit =5
 
@@ -14,7 +14,7 @@ let keyboardAlphabet= () => {
          countForAscii++;
       }
       alphabet();
-      element.innerHTML += `<div class="wordKB" id="${alphabetArr[i]}" onclick='readKeyKB("${alphabetArr[i]}")'>`+`<p>${alphabetArr[i]}</p>`+`</div>`;
+      element.innerHTML += `<div class="wordKB" id="${alphabetArr[i]}" onclick='readKeyKB("${alphabetArr[i]}")' >`+`<p>${alphabetArr[i]}</p>`+`</div>`;
    }
 }
 keyboardAlphabet();
@@ -39,52 +39,56 @@ guessArrMap();
 // --- read key from keyboard ---
 let readKey = (event)=> {
    let temp = event.key;
-   // console.log(temp);
-   // temp= String.fromCharCode(temp);
-   // console.log(temp);
    let temp2= words[0];
+   // search + filter + repeat
    let pos = temp2.indexOf(temp);
-   if (pos === -1) {
-         incorrect(temp);
-      }else{
-         correct(pos,temp);
+   if (pos != -1) {
+      correct(pos,temp);
+      let pos1 = temp2.indexOf(temp,pos+1);
+      if(pos1 != -1){
+         correct(pos1,temp);
+         let pos2 = temp2.indexOf(temp,pos1+1);
+         if(pos2 != -1){
+            correct(pos2,temp);
+         }
+      }
+   }else if(pos|| pos1 || pos2 === -1){
+      incorrect(temp);
    }
 }
-console.log(guessWord);
-
+   
 // --- read key from on-screen keyboard ---
 let readKeyKB = (letter)=> {
    letter = letter.toLowerCase();
    let temp2= words[0];
-   console.log(temp2);
-   console.log(letter);
    let pos = temp2.indexOf(letter);
-   console.log(pos);
-   if (pos === -1) {
-         incorrect(letter);
-      }else{
-         correct(pos,letter);
+   if (pos != -1) {
+      correct(pos,letter);
+      let pos1 = temp2.indexOf(letter,pos+1);
+      if(pos1 != -1){
+         correct(pos1,letter);
+         let pos2 = temp2.indexOf(letter,pos1+1);
+         if(pos2 != -1){
+            correct(pos2,letter);
+         }
+      }
+   }else if(pos||pos1||pos2 === -1){
+      incorrect(letter);
    }
 }
 
 // // --- correct alphabet ---- 
 let correct = (pos,temp)=> {
-   // console.log(temp);
-   // console.log(pos);
    let i=0;
-   // console.log(guessWord[i]);
    guessWord = guessWord.map((value,index)=> {
       if( pos === index){
-         // console.log(index);
          return temp;
       }else{
-         // console.log(--i);
          return value;
       }
    })
    let tempForGuessWord = guessWord.join(" ");
    document.getElementById('dashPara').innerHTML = tempForGuessWord;
-   // console.log(guessWord);
 }
 
 // --- Incorrect alphabet ---- 
@@ -105,10 +109,17 @@ let incorrect= (temp)=> {
       document.getElementById('six').setAttribute("class", "visible");  
    }else if (mistakeArr.length === 7) {
       document.getElementById('seven').setAttribute("class", "visible");  
-   }else{
+   }else if(mistakeArr.length> 7){
+      console.log();
       //to be added ----> modal
    }
 }
+
+// // --- change color of letters used ---
+// let guessedWord = (letter) =>{
+//    document.getElementById(`${letter}`).setAttribute("class", "colorLetter");
+      // <!--; guessedWord("${alphabetArr[i]}");-->
+// }
 
 //-- some consoles ---
 // console.log(parseInt(Math.random()*10));
