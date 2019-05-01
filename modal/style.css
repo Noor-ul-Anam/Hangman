@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  font-family: sans-serif; }
+
+#modal {
+  visibility: hidden;
+  width: 75%;
+  margin: auto;
+  position: relative;
+  top: 90px;
+  z-index: 1;
+  border: 2px solid black;
+  padding: 20px;
+  box-shadow: 8px 2px 4px #999; }
+  #modal h1 {
+    text-align: center;
+    color: rebeccapurple; }
+  #modal .close {
+    position: absolute;
+    right: 20px;
+    top: 20px; }
+
+/*# sourceMappingURL=style.css.map */
