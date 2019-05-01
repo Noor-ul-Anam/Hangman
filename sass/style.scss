@@ -23,7 +23,7 @@ $fontColor: whitesmoke;
     .content{
         display: flex;
         .primary{
-            padding: 150px 20px ;
+            padding: 120px 20px ;
             background-color: $primaryColor;
             flex: 3;
             h1{
@@ -64,12 +64,15 @@ $fontColor: whitesmoke;
             flex: 2;
             .img{
                 margin: 20px;
-                padding: 20px;
+                padding-top: 70px;
                 p{
                     text-align: center;
-                    font: 5em/0.8em sans-serif;
+                    color: $DarkBrown;
+                    font: 5em/0.7em sans-serif;
                     visibility: hidden; 
-                    // display: none;
+                    &.visible{
+                        visibility: visible;
+                    }
                 }
             }
         }

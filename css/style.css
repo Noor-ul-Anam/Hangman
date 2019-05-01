@@ -13,7 +13,7 @@ body {
 .wrapper .content {
   display: flex; }
   .wrapper .content .primary {
-    padding: 150px 20px;
+    padding: 120px 20px;
     background-color: white;
     flex: 3; }
     .wrapper .content .primary h1 {
@@ -47,10 +47,13 @@ body {
     flex: 2; }
     .wrapper .content .secondary .img {
       margin: 20px;
-      padding: 20px; }
+      padding-top: 70px; }
       .wrapper .content .secondary .img p {
         text-align: center;
-        font: 5em/0.8em sans-serif;
+        color: #3d2a12;
+        font: 5em/0.7em sans-serif;
         visibility: hidden; }
+        .wrapper .content .secondary .img p.visible {
+          visibility: visible; }
 
 /*# sourceMappingURL=style.css.map */
