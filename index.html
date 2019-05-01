@@ -8,20 +8,21 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Hangman</title>
 </head>
-<body>
-    <div class="wrapper">
+<body onkeypress="readKey(event)">
+    <div class="wrapper" >
         <!-- <h1 class="mainHeading">Hangman</h1> -->
         <div class="content"> 
             <div class="primary">
                 <h1>Guess the word!? </h1>
-                <p id="dashPara"></p>
+                <!-- <input type="text" id="inp" > -->
+                <p id="dashPara" ></p>
                 <div id="keyboard">
                     <!-- keyboard rendered here -->
                 </div>
             </div>
             <div class="secondary">
                 <div class="img">
-                    <p id="seven">l</p>
+                    <p id="six">l</p>
                     <p id="one">O</p>
                     <p id="two">l</p>
                     <p id="three">-   -</p>

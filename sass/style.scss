@@ -47,8 +47,8 @@ $fontColor: whitesmoke;
                     height: 44px;
                     background-color: $DarkBrown;
                     margin: 7px;
-                    & :hover{
-                        box-shadow: 5px 10px 8px #888888;
+                    &:hover{
+                        box-shadow: 2px 5px 6px #888888;
                     } 
                     p{
                         margin: 10px;
@@ -67,8 +67,9 @@ $fontColor: whitesmoke;
                 padding: 20px;
                 p{
                     text-align: center;
-                    font: 5em/0.8em sans-serif; 
-                    display: none;
+                    font: 5em/0.8em sans-serif;
+                    visibility: hidden; 
+                    // display: none;
                 }
             }
         }
