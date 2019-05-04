@@ -1,10 +1,25 @@
 let alphabetArr = []; // All alphabets in keyboard are stored here..
-let words = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'Land-Cruiser','suzuki', 'ferrari', 'lamborghini', ]; // all words in hngman 
-let guessWord = [];// the word guessed
-let mistakeArr = []; // mistaken letters stored here .. limit =7
+// categories object
+let categories = [
+   cars = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'Land-Cruiser','sedan', 'ferrari', 'lamborghini']
+];
+// hints object
 let hints = {
    //create nested object properties for different categories..
+   [0]: 'its a small car', 
+   [1]: 'its a small car', 
+   [2] : 'its not a car'
 }
+console.log(cars[0]);
+console.log(hints[0]);
+console.log(hints[2]);
+
+// let words = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'Land-Cruiser','sedan', 'ferrari', 'lamborghini'] ; // all words in hngman 
+let guessWord = [];// the word guessed
+let mistakeArr = []; // mistaken letters stored here .. limit =7
+// ctrl+h -> find and replace
+
+
 let randomNumber= parseInt(Math.random()*10); 
 console.log(randomNumber);
 
@@ -32,11 +47,13 @@ let stringToArr = (arrArg) => {
 
 // --- Initializing guess array --- 
 let guessArrMap = () => {
-   guessWord = stringToArr(words);
+   guessWord = stringToArr(cars);
+   console.log(guessWord);
    guessWord = guessWord.map(() => {
       return '-';
    })
    let tempForGuessWord = guessWord.join(" ");
+   console.log(tempForGuessWord);
    document.getElementById('dashPara').innerHTML += tempForGuessWord;
 }
 guessArrMap();
@@ -44,10 +61,12 @@ guessArrMap();
 // --- read key from keyboard ---
 let readKey = (event) => {
    let temp = event.key;
-   
+   if(event> 96 && event<123){
+      // -- add code---
+   }
    keyPressed(temp);
-   // temp = temp.toUpperCase();
-   let temp2 = words[randomNumber];
+   let temp2 = cars[randomNumber];
+   console.log(temp2);
    // search + filter + repeat
    let pos = temp2.indexOf(temp);
    let pos2= guessWord.indexOf(temp); // checking for the letter in guess array, so if it exists then it won't be pushed in the array again
@@ -65,6 +84,8 @@ let readKey = (event) => {
       } else if (pos || pos1 || pos2 === -1) {
          incorrect(temp);
       }
+   }else{
+      console.log('duh.'); // thsi happens if same key is pressed again
    }
 }
 
@@ -80,7 +101,8 @@ let keyPressed =(letter) => {
 let readKeyKB = (letter) => {
    letter = letter.toLowerCase();
    keyPressed(letter);
-   let temp2 = words[randomNumber];
+   console.log(letter);
+   let temp2 = cars[randomNumber];
    let pos = temp2.indexOf(letter);
    let pos2 =  guessWord.indexOf(letter);
    console.log(guessWord);
@@ -98,6 +120,8 @@ let readKeyKB = (letter) => {
       } else if (pos || pos1 || pos2 === -1) {
          incorrect(letter);
       }
+   }else{
+      console.log('duh.'); // thsi happens if same key is pressed again
    }
 }
 
@@ -153,7 +177,6 @@ let incorrect = (temp) => {
 }
 // ---- modal functions ----
 let modalAppear = () => {
-   document.getElementById('modalContent').style.transform = 'scale(1)';
    document.getElementById('modal').style.transform = 'scale(1)';
    document.getElementById('overlay').style.display = 'initial';
  
@@ -165,6 +188,7 @@ let modalAppear = () => {
 
 
 //-- some consoles ---
-// console.log(words[0].length);
+// console.log(cars[randomNumber].length);
+// console.log(cars[randomNumber]);
 // console.log(count);
 

@@ -11,6 +11,7 @@
 </head>
 
 <body onkeypress="readKey(event)">
+        
     <div class="wrapper">
         <div class="content">  
             <div class="primary">
@@ -21,16 +22,6 @@
                     <!-- keyboard rendered here -->
                 </div>
             </div>
-            <div id="modalContainer">
-                    <div id="modal" >
-                        <h1>This is a heading inside of modal</h1>
-                        <p>sfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh
-                        cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv
-                        k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn </p>
-                        <button class="close" onclick="closeModal()">x</button>
-                        <div id="overlay" onclick="closeModal()"></div>
-                    </div>
-                </div>
             <div class="secondary">
                 <div class="img">
                     <p id="one"></p>
@@ -44,8 +35,12 @@
                 </div>
             </div>
         </div>
-        
     </div>
+    <div id="modal" >
+        <h1>Let's try again ;)</h1>        
+        <button class="close" onclick="closeModal()">x</button>
+    </div>
+    <div id="overlay" onclick="closeModal()"></div>
     <script src="./js/js.js"></script>
 </body>
 
