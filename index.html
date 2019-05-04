@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +9,44 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Hangman</title>
 </head>
+
 <body onkeypress="readKey(event)">
-    <div class="wrapper" >
-        <div class="content">
-            <div class="modal"></div>
+    <div class="wrapper">
+        <div class="content">  
             <div class="primary">
+                <button id="hint">Hint</button>
                 <h1>Guess the word!? </h1>
-                <p id="dashPara" ></p>
+                <p id="dashPara"></p>
                 <div id="keyboard">
                     <!-- keyboard rendered here -->
                 </div>
             </div>
+            <div id="modalContainer">
+                    <div id="modal" >
+                        <h1>This is a heading inside of modal</h1>
+                        <p>sfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh
+                        cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv
+                        k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn n nv,knsfjkafjh cjksafoajsnv k vkmnkl c jmnk vn </p>
+                        <button class="close" onclick="closeModal()">x</button>
+                        <div id="overlay" onclick="closeModal()"></div>
+                    </div>
+                </div>
             <div class="secondary">
                 <div class="img">
-                    <p id="six">---</p>
-                    <p id="seven">l</p>
-                    <p id="one">O</p>
-                    <p id="two">l</p>
-                    <p id="three">-   -</p>
-                    <p id="four">l</p>
-                    <p id="five">-   -</p>
+                    <p id="one"></p>
+                    <p id="two">O</p>
+                    <p id="three"></p>
+                    <p id="four"></p>
+                    <p id="five"></p>
+                    <p id="six"></p>
+                    <p id="seven"></p>
+                    <p id="eight"></p>
                 </div>
             </div>
         </div>
+        
     </div>
     <script src="./js/js.js"></script>
 </body>
-</html>li
+
+</html>

@@ -1,34 +1,47 @@
 // sass --watch sass/style.scss:css/style.css
 
+// ---- Variables -----
+$DarkBrown:#3d2a12;
+$imageColor: #2c2c68;
+$fontColor: whitesmoke;
+
+//-----Mixins ---
+
+
 *{
     box-sizing: border-box;
     margin: 0; 
 }
 body{
     font-family: sans-serif;
-}
-// ---- Variables -----
-$DarkBrown:#3d2a12;
-$primaryColor : white ;
-$fontColor: whitesmoke;
+    background-color: $fontColor;
 
-//-----Mixins ---
+}
 .wrapper{
-    .mainHeading{
-        background-color: $DarkBrown;
-        color: $fontColor;
-        text-align: center;
-        padding: 40px;
-    }
+    position: relative;
     .content{
         display: flex;
-        .modal{
-            visibility: hidden;
-        }
         .primary{
+            position: relative;
             padding: 120px 20px ;
-            background-color: $primaryColor;
             flex: 3;
+            #hint{
+                position: absolute;
+                bottom: 5%;
+                right: 10%;
+                height: 40px;
+                width: 60px;
+                background-color: $imageColor;
+                color: $fontColor;
+                border: $imageColor 1px solid;
+                font-weight: bolder;
+                &:hover{
+                    box-shadow: 2px 5px 6px #888888;
+                } 
+                &:active{
+                    box-shadow: 1px 1px 1px #888888;
+                }
+            }
             h1{
                 color: $DarkBrown;
                 text-align: center;
@@ -53,7 +66,9 @@ $fontColor: whitesmoke;
                     &:hover{
                         box-shadow: 2px 5px 6px #888888;
                     } 
-                    
+                    &:active{
+                        box-shadow: 1px 1px 1px #888888;
+                    }
                     p{
                         margin: 10px;
                         font-size: 20px;
@@ -63,12 +78,119 @@ $fontColor: whitesmoke;
                 }
             }
         }
+        #modalContainer{
+            display: none;
+            #modal{
+                transform: scale(0);
+                transition: 0.3s;
+                width: 75%;
+                margin: auto;
+                position: relative;
+                top: 90px;
+                z-index: 1;
+                border: 2px solid black;
+                padding: 20px;
+                z-index: 1100;
+                background-color: #fff;
+                top: -400px;
+                h1{
+                    text-align: center;
+                    color: rebeccapurple;
+                }
+                .close{
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                }
+                #overlay{
+                    background-color: rgba(0, 0, 0, 0.5);
+                    height: 100vh;
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    z-index: 1000;
+                    display: none;
+                }
+            }
+        }
         .secondary{
-            background-color: $primaryColor; 
             flex: 2;
             .img{
                 margin: 20px;
                 padding-top: 70px;
+                position: relative;
+                #one{
+                    height: 10px;
+                    width: 150px;
+                    background-color: $imageColor;
+                    margin: auto;
+                }
+                #two{
+                    color: $imageColor;
+                    margin-top: 75px;
+                }
+                #three{
+                    margin-top: 15px;
+                    height: 200px;
+                    width: 50px;
+                    background-color: $imageColor;
+                    margin: auto;
+                }
+                #four{
+                    margin-top: 15px;
+                    height: 120px;
+                    width: 20px;
+                    background-color: $imageColor;
+                    margin: auto;
+                    position: absolute;
+                    top: 51%;
+                    left: 39%;
+                    transform: rotate(27deg);                
+                }
+                #five{
+                    margin-top: 15px;
+                    height: 120px;
+                    width: 20px;
+                    background-color: $imageColor;
+                    margin: auto;
+                    position: absolute;
+                    top: 51%;
+                    left: 57%;
+                    transform: rotate(-27deg);                
+                }
+                #six{    
+                    margin-top: 15px;
+                    height: 120px;
+                    width: 20px;
+                    background-color: $imageColor;
+                    margin: auto;
+                    position: absolute;
+                    top: 94%;
+                    left: 41%;
+                    transform: rotate(22deg);                
+                }
+                #seven{
+                    margin-top: 15px;
+                    height: 120px;
+                    width: 20px;
+                    background-color: $imageColor;
+                    margin: auto;
+                    position: absolute;
+                    top: 94%;
+                    left: 56%;
+                    transform: rotate(-22deg);
+                }
+                #eight{
+                    margin-top: 15px;
+                    height: 83px;
+                    width: 11px;
+                    background-color: $imageColor;
+                    margin: auto;
+                    position: absolute;
+                    top: 18%;
+                    left: 49%;                
+                }
                 p{
                     text-align: center;
                     color: $DarkBrown;
@@ -78,7 +200,9 @@ $fontColor: whitesmoke;
                         visibility: visible;
                     }
                 }
-            }
-        }
+            }            
     }
+    }
+    
+    
 }
