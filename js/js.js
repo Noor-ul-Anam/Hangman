@@ -61,14 +61,15 @@ guessArrMap();
 
 // --- function to fetch next word
 let nextWord = (randomNumber) => {
+   generateRndNum();
    guessArrMap();
    closeModal();
+   mistakeArr = [];
    for (let i = 65; i < 91; i++) {
       temp = String.fromCharCode(i);
       let temp2= document.getElementById(`${temp}`);
       temp2.style.backgroundColor = '#3d2a12';
    }
-   generateRndNum();
 }
 
 // --- marking keys pressed ---- 
@@ -165,7 +166,7 @@ let correct = (pos, temp) => {
    document.getElementById('dashPara').innerHTML = tempForGuessWord; // guess word array printed into paragraph
    // -- modal apperad with we win ---
    checkWordStatus(temp);
-   // generateRndNum();
+   
 }
 
 // --- Incorrect alphabet ---- 
