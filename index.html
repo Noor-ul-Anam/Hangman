@@ -11,11 +11,12 @@
 </head>
 
 <body onkeypress="readKey(event)">
-        
+      
     <div class="wrapper">
         <div class="content">  
             <div class="primary">
                 <button id="hint">Hint</button>
+                <button id="next" onclick="nextWord()">Next</button>
                 <h1>Guess the word!? </h1>
                 <p id="dashPara"></p>
                 <div id="keyboard">
@@ -37,8 +38,9 @@
         </div>
     </div>
     <div id="modal" >
-        <h1>Let's try again ;)</h1>        
+        <h1 id="headingModal" >Let's try again ;)</h1>        
         <button class="close" onclick="closeModal()">x</button>
+        <button class="next" onclick="nextWord()">Next word</button>
     </div>
     <div id="overlay" onclick="closeModal()"></div>
     <script src="./js/js.js"></script>

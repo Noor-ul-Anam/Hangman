@@ -8,11 +8,15 @@ $fontColor: whitesmoke;
 //-----Mixins ---
 
 
+
 *{
     box-sizing: border-box;
     margin: 0; 
 }
 body{
+    .color{
+        background-color: $DarkBrown;
+    }
     font-family: sans-serif;
     background-color: $fontColor;
         #overlay{
@@ -26,8 +30,8 @@ body{
             display: none;
         }
         #modal{
-            border-radius: 10px;
             transform: scale(0);
+            border-radius: 10px;
             transition: 0.3s;
             width: 55%;
             margin: auto;
@@ -55,6 +59,21 @@ body{
                     box-shadow: 1px 1px 1px #888888;
                 }
             }
+            .next{
+                position: absolute;
+                background-color: $imageColor;
+                border: 3px solid $imageColor;
+                color: $fontColor;
+                border-radius: 10px;
+                right: 20px;
+                bottom: 20px;
+                &:hover{
+                    box-shadow: 2px 3px 6px #888888;
+                } 
+                &:active{
+                    box-shadow: 1px 1px 1px #888888;
+                }
+            }
         }
 }
 .wrapper{
@@ -66,6 +85,24 @@ body{
             padding: 120px 20px ;
             flex: 3;
             #hint{
+                position: absolute;
+                bottom: 5%;
+                left: 10%;
+                height: 40px;
+                width: 60px;
+                background-color: $imageColor;
+                border: none;
+                color: $fontColor;
+                font-weight: bolder;
+                border-radius: 10px;
+                &:hover{
+                    box-shadow: 2px 5px 6px #888888;
+                } 
+                &:active{
+                    box-shadow: 1px 1px 1px #888888;
+                }
+            }
+            #next{
                 position: absolute;
                 bottom: 5%;
                 right: 10%;
@@ -88,7 +125,7 @@ body{
                 text-align: center;
             }
             p{
-                color: $DarkBrown;
+                color: $imageColor;
                 text-align: center;
                 font-size: 40px;
             }

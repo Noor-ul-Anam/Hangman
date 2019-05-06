@@ -1,27 +1,21 @@
 let alphabetArr = []; // All alphabets in keyboard are stored here..
-// categories object
-let categories = [
-   cars = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'Land-Cruiser','sedan', 'ferrari', 'lamborghini']
-];
-// hints object
-let hints = {
-   //create nested object properties for different categories..
-   [0]: 'its a small car', 
-   [1]: 'its a small car', 
-   [2] : 'its not a car'
-}
-console.log(cars[0]);
-console.log(hints[0]);
-console.log(hints[2]);
-
-// let words = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'Land-Cruiser','sedan', 'ferrari', 'lamborghini'] ; // all words in hngman 
+let words = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'land-cruiser','sedan', 'ferrari', 'lamborghini'] ; // all words in hngman 
 let guessWord = [];// the word guessed
 let mistakeArr = []; // mistaken letters stored here .. limit =7
 // ctrl+h -> find and replace
 
-
-let randomNumber= parseInt(Math.random()*10); 
+let randomNumber;
+let prevRandomNum;
+// -- generates a random number and save it in the variable
+let generateRndNum = () =>{
+   prevRandomNum = randomNumber;
+   randomNumber= parseInt(Math.random()*(words.length));
+}
+generateRndNum();
 console.log(randomNumber);
+
+let currentWord = words[randomNumber]; // array of current word
+console.log(currentWord);
 
 // ---- Keyboard ----
 let keyboardAlphabet = () => {
@@ -45,48 +39,36 @@ let stringToArr = (arrArg) => {
    return arr;
 }
 
+// -- converting from array to string ----
+let arrayToString = (arrArg) => {
+   let string= arrArg.join(" "); // array to string
+   return string;
+}
+
 // --- Initializing guess array --- 
 let guessArrMap = () => {
-   guessWord = stringToArr(cars);
+   guessWord = stringToArr(words);
+   currentWord =guessWord;
    console.log(guessWord);
    guessWord = guessWord.map(() => {
       return '-';
    })
-   let tempForGuessWord = guessWord.join(" ");
+   let tempForGuessWord = arrayToString(guessWord);
    console.log(tempForGuessWord);
-   document.getElementById('dashPara').innerHTML += tempForGuessWord;
+   document.getElementById('dashPara').innerHTML = tempForGuessWord;
 }
 guessArrMap();
 
-// --- read key from keyboard ---
-let readKey = (event) => {
-   let temp = event.key;
-   if(event> 96 && event<123){
-      // -- add code---
+// --- function to fetch next word
+let nextWord = (randomNumber) => {
+   guessArrMap();
+   closeModal();
+   for (let i = 65; i < 91; i++) {
+      temp = String.fromCharCode(i);
+      let temp2= document.getElementById(`${temp}`);
+      temp2.style.backgroundColor = '#3d2a12';
    }
-   keyPressed(temp);
-   let temp2 = cars[randomNumber];
-   console.log(temp2);
-   // search + filter + repeat
-   let pos = temp2.indexOf(temp);
-   let pos2= guessWord.indexOf(temp); // checking for the letter in guess array, so if it exists then it won't be pushed in the array again
-   if(pos2 === -1){
-      if (pos != -1) {
-         correct(pos, temp);
-         let pos1 = temp2.indexOf(temp, pos + 1);
-         if (pos1 != -1) {
-            correct(pos1, temp);
-            let pos2 = temp2.indexOf(temp, pos1 + 1);
-            if (pos2 != -1) {
-               correct(pos2, temp);
-            }
-         }
-      } else if (pos || pos1 || pos2 === -1) {
-         incorrect(temp);
-      }
-   }else{
-      console.log('duh.'); // thsi happens if same key is pressed again
-   }
+   generateRndNum();
 }
 
 // --- marking keys pressed ---- 
@@ -97,12 +79,46 @@ let keyPressed =(letter) => {
    // create another function to alert when same letter is pressed again..
 }
 
+// --- read key from keyboard ---
+let readKey = (event) => {
+   let temp = event.key;
+   if(event.which> 96 && event.which<123){
+      keyPressed(temp);
+      let temp2 = words[randomNumber];
+      // search + filter + repeat
+      let pos = temp2.indexOf(temp);
+      let pos2= guessWord.indexOf(temp); // checking for the letter in guess array, so if it exists then it won't be pushed in the array again
+      //checking if guess array is equal to words array
+      if(pos2 === -1){
+         if (pos != -1) {
+            correct(pos, temp);
+            let pos1 = temp2.indexOf(temp, pos + 1);
+            if (pos1 != -1) {
+               correct(pos1, temp);
+               let pos2 = temp2.indexOf(temp, pos1 + 1);
+               if (pos2 != -1) {
+                  correct(pos2, temp);
+               }
+            }
+         } else if (pos || pos1 || pos2 === -1) {
+            incorrect(temp);
+         }
+      }else{
+         return false; // thsi happens if same key is pressed again
+      }
+      // console.log('jjjjjj');
+   }else{
+      return false;
+   }
+  
+}
+
+
 // --- read key from on-screen keyboard ---
 let readKeyKB = (letter) => {
    letter = letter.toLowerCase();
    keyPressed(letter);
-   console.log(letter);
-   let temp2 = cars[randomNumber];
+   let temp2 = words[randomNumber];
    let pos = temp2.indexOf(letter);
    let pos2 =  guessWord.indexOf(letter);
    console.log(guessWord);
@@ -121,13 +137,23 @@ let readKeyKB = (letter) => {
          incorrect(letter);
       }
    }else{
-      console.log('duh.'); // thsi happens if same key is pressed again
+      return false; // thsi happens if same key is pressed again
    }
 }
 
-// // --- correct alphabet ---- 
+// -- if currentWord array is empty/filter if not ---
+let checkWordStatus = (temp) => {
+   for (let i = 0; i < guessWord.length; i++) {
+      let a = '-';
+      let temp = guessWord.indexOf(a,i);   
+      if (temp === -1) {
+         modalAppear('You win!');
+      }   
+   }
+}
+
+// --- correct alphabet ---- 
 let correct = (pos, temp) => {
-   let i = 0;
    guessWord = guessWord.map((value, index) => {
       if (pos === index) {
          return temp;
@@ -135,9 +161,11 @@ let correct = (pos, temp) => {
          return value;
       }
    })
-   console.log(guessWord);
-   let tempForGuessWord = guessWord.join(" ");
-   document.getElementById('dashPara').innerHTML = tempForGuessWord;
+   let tempForGuessWord = arrayToString(guessWord); 
+   document.getElementById('dashPara').innerHTML = tempForGuessWord; // guess word array printed into paragraph
+   // -- modal apperad with we win ---
+   checkWordStatus(temp);
+   // generateRndNum();
 }
 
 // --- Incorrect alphabet ---- 
@@ -169,14 +197,14 @@ let incorrect = (temp) => {
          break;
       default:
          if (mistakeArr.length > 7) {
-            modalAppear();
-            // console.log('blah');
+            modalAppear("Let's try again!");
             break;
          }
    }
 }
 // ---- modal functions ----
-let modalAppear = () => {
+let modalAppear = (temp) => {
+   document.getElementById('headingModal').innerHTML = temp;
    document.getElementById('modal').style.transform = 'scale(1)';
    document.getElementById('overlay').style.display = 'initial';
  
@@ -188,7 +216,7 @@ let modalAppear = () => {
 
 
 //-- some consoles ---
-// console.log(cars[randomNumber].length);
-// console.log(cars[randomNumber]);
+// console.log(words[randomNumber].length);
+// console.log(words[randomNumber]);
 // console.log(count);
 
