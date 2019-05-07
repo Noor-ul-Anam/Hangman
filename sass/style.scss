@@ -158,10 +158,19 @@ body{
         }
         .secondary{
             flex: 2;
-            .img{
+            #img{
                 margin: 20px;
                 padding-top: 70px;
                 position: relative;
+                .paraImage{
+                    text-align: center;
+                    color: $DarkBrown;
+                    font: 5em/0.7em sans-serif;
+                    visibility: hidden; 
+                    &.visible{
+                        visibility: visible;
+                    }
+                }
                 #one{
                     height: 10px;
                     width: 150px;
@@ -232,15 +241,6 @@ body{
                     position: absolute;
                     top: 18%;
                     left: 49%;                
-                }
-                p{
-                    text-align: center;
-                    color: $DarkBrown;
-                    font: 5em/0.7em sans-serif;
-                    visibility: hidden; 
-                    &.visible{
-                        visibility: visible;
-                    }
                 }
             }            
     }

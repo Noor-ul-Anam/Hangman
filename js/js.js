@@ -1,21 +1,31 @@
-let alphabetArr = []; // All alphabets in keyboard are stored here..
+let alphabetArr = []; // All alphabets in keyboard.. 
 let words = ['volvo' , 'mercedes', 'every' , 'mehran', 'city', 'honda', 'land-cruiser','sedan', 'ferrari', 'lamborghini'] ; // all words in hngman 
 let guessWord = [];// the word guessed
 let mistakeArr = []; // mistaken letters stored here .. limit =7
 // ctrl+h -> find and replace
 
+// word array position 0 = volvo -- > problem --> when last alphabet is filled .. it announces win
+// whenever 7 alphabets have been pressed .. it passes to win // resolved -> else condition wasn't stated
+
 let randomNumber;
-let prevRandomNum;
-// -- generates a random number and save it in the variable
+// --- generates a random number and save it in the variable ---
 let generateRndNum = () =>{
-   prevRandomNum = randomNumber;
    randomNumber= parseInt(Math.random()*(words.length));
+   console.log(randomNumber);
 }
 generateRndNum();
 console.log(randomNumber);
 
-let currentWord = words[randomNumber]; // array of current word
-console.log(currentWord);
+// -- current word ---
+let currentWord;
+let setCurrentWord =() =>{
+   currentWord = words[randomNumber]; // array of current word
+   console.log(currentWord);  
+   console.log(words[randomNumber]);
+}
+setCurrentWord();
+// console.log(currentWord);
+console.log(words[randomNumber]);
 
 // ---- Keyboard ----
 let keyboardAlphabet = () => {
@@ -48,22 +58,28 @@ let arrayToString = (arrArg) => {
 // --- Initializing guess array --- 
 let guessArrMap = () => {
    guessWord = stringToArr(words);
+   console.log(randomNumber);    // random number is printed here ..
    currentWord =guessWord;
-   console.log(guessWord);
    guessWord = guessWord.map(() => {
       return '-';
    })
    let tempForGuessWord = arrayToString(guessWord);
-   console.log(tempForGuessWord);
    document.getElementById('dashPara').innerHTML = tempForGuessWord;
 }
 guessArrMap();
 
 // --- function to fetch next word
-let nextWord = (randomNumber) => {
+let nextWord = () => {
+   console.log('--- next word --');
    generateRndNum();
+   setCurrentWord(); 
+   console.log(randomNumber); // error -- can't catch value of random number
+   console.log(words[randomNumber]);
    guessArrMap();
    closeModal();
+   for (let i = 0; i <mistakeArr.length; i++) {
+      document.getElementsByClassName('paraImage')[i].style.visibility = 'hidden';    
+   }
    mistakeArr = [];
    for (let i = 65; i < 91; i++) {
       temp = String.fromCharCode(i);
@@ -76,8 +92,7 @@ let nextWord = (randomNumber) => {
 let keyPressed =(letter) => {
    letter = letter.toUpperCase();
    document.getElementById(`${letter}`).style.backgroundColor = '#2c2c68';
-   
-   // create another function to alert when same letter is pressed again..
+   // create another function to alert when same letter is pressed again ..
 }
 
 // --- read key from keyboard ---
@@ -102,18 +117,20 @@ let readKey = (event) => {
                }
             }
          } else if (pos || pos1 || pos2 === -1) {
-            incorrect(temp);
+            let mistake = mistakeArr.indexOf(temp);
+            if(mistake === -1){
+               incorrect(temp);
+            }else{
+               return false;
+            }
          }
       }else{
-         return false; // thsi happens if same key is pressed again
+         return false; // this happens if same key is pressed again
       }
-      // console.log('jjjjjj');
    }else{
       return false;
    }
-  
 }
-
 
 // --- read key from on-screen keyboard ---
 let readKeyKB = (letter) => {
@@ -135,7 +152,12 @@ let readKeyKB = (letter) => {
             }
          }
       } else if (pos || pos1 || pos2 === -1) {
-         incorrect(letter);
+         let mistake = mistakeArr.indexOf(letter);
+            if(mistake === -1){
+               incorrect(letter);
+            }else{
+               return false;
+            }
       }
    }else{
       return false; // thsi happens if same key is pressed again
@@ -144,12 +166,19 @@ let readKeyKB = (letter) => {
 
 // -- if currentWord array is empty/filter if not ---
 let checkWordStatus = (temp) => {
-   for (let i = 0; i < guessWord.length; i++) {
+   console.log(guessWord);
+   console.log(currentWord);
+   console.log(words[randomNumber]);
+   console.log(mistakeArr);
+   console.log(guessWord.length);
+   for (let i = 0; i < guessWord.length+1; i++) {
       let a = '-';
       let temp = guessWord.indexOf(a,i);   
       if (temp === -1) {
          modalAppear('You win!');
-      }   
+      }else{
+         return false;
+      }
    }
 }
 
@@ -165,8 +194,7 @@ let correct = (pos, temp) => {
    let tempForGuessWord = arrayToString(guessWord); 
    document.getElementById('dashPara').innerHTML = tempForGuessWord; // guess word array printed into paragraph
    // -- modal apperad with we win ---
-   checkWordStatus(temp);
-   
+   checkWordStatus(temp); 
 }
 
 // --- Incorrect alphabet ---- 
@@ -175,41 +203,44 @@ let incorrect = (temp) => {
    // console.log(mistakeArr.length);
    switch (mistakeArr.length) {
       case 1:
-         document.getElementById('one').setAttribute("class", "visible");
+         document.getElementById('one').style.visibility = 'visible';
          break;
       case 2:
-         document.getElementById('two').setAttribute("class", "visible");
+         document.getElementById('two').style.visibility = 'visible';
          break;
       case 3:
-         document.getElementById('three').setAttribute("class", "visible");
+         document.getElementById('three').style.visibility = 'visible';
          break;
       case 4:
-         document.getElementById('four').setAttribute("class", "visible");
+         document.getElementById('four').style.visibility = 'visible';
          break;
       case 5:
-         document.getElementById('five').setAttribute("class", "visible");
+         document.getElementById('five').style.visibility = 'visible';
          break;
       case 6:
-         document.getElementById('six').setAttribute("class", "visible");
-         document.getElementById('seven').setAttribute("class", "visible");   
+         document.getElementById('six').style.visibility = 'visible';
          break;
       case 7:
-         document.getElementById('eight').setAttribute("class", "visible");      
-         break;
+         document.getElementById('seven').style.visibility = 'visible';  
+      break;
       default:
-         if (mistakeArr.length > 7) {
+      if (mistakeArr.length > 7) {
+            document.getElementById('eight').style.visibility = 'visible';
             modalAppear("Let's try again!");
             break;
          }
    }
 }
 // ---- modal functions ----
+// -- open modal ---
 let modalAppear = (temp) => {
    document.getElementById('headingModal').innerHTML = temp;
    document.getElementById('modal').style.transform = 'scale(1)';
    document.getElementById('overlay').style.display = 'initial';
  
  }
+
+ // --- close modal ---
  let closeModal = () => {
    document.getElementById('overlay').style.display = 'none';
    document.getElementById('modal').style.transform = 'scale(0)';
@@ -219,5 +250,4 @@ let modalAppear = (temp) => {
 //-- some consoles ---
 // console.log(words[randomNumber].length);
 // console.log(words[randomNumber]);
-// console.log(count);
 
