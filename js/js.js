@@ -11,7 +11,6 @@ let randomNumber;
 // --- generates a random number and save it in the variable ---
 let generateRndNum = () =>{
    randomNumber= parseInt(Math.random()*(words.length));
-   console.log(randomNumber);
 }
 generateRndNum();
 console.log(randomNumber);
@@ -21,11 +20,46 @@ let currentWord;
 let setCurrentWord =() =>{
    currentWord = words[randomNumber]; // array of current word
    console.log(currentWord);  
-   console.log(words[randomNumber]);
 }
 setCurrentWord();
 // console.log(currentWord);
-console.log(words[randomNumber]);
+
+// --- Timer --- 
+let tempForTime;
+let setTimer= () =>{
+   let i= 01;
+   tempForTime =setInterval(()=> {
+      document.getElementById('time').innerHTML= i;
+      i++;
+      if(i===61){
+         modalAppear("Time's up!");
+         clearTimer();
+      }
+      }, 1000)
+   
+}
+setTimer();
+console.log(tempForTime);
+
+// -- clearing timer ---
+let clearTimer = () =>{
+   clearInterval(tempForTime);
+}
+
+// -- level and score palette -- score only now!!
+let scoreVar=0;
+let level=0 ;
+let score = () => {
+   document.getElementById('scorePalette').innerHTML = `${scoreVar}`;
+   document.getElementById('levelPalette').innerHTML = `${level}`;
+   // level upgration if needed
+   if(scoreVar > 11){
+      level++;
+      document.getElementById('levelPalette').innerHTML = `${level}`;
+   }
+   console.log(scoreVar);
+}
+score();
 
 // ---- Keyboard ----
 let keyboardAlphabet = () => {
@@ -58,7 +92,6 @@ let arrayToString = (arrArg) => {
 // --- Initializing guess array --- 
 let guessArrMap = () => {
    guessWord = stringToArr(words);
-   console.log(randomNumber);    // random number is printed here ..
    currentWord =guessWord;
    guessWord = guessWord.map(() => {
       return '-';
@@ -86,6 +119,8 @@ let nextWord = () => {
       let temp2= document.getElementById(`${temp}`);
       temp2.style.backgroundColor = '#3d2a12';
    }
+   clearTimer(); 
+   setTimer();
 }
 
 // --- marking keys pressed ---- 
@@ -167,17 +202,22 @@ let readKeyKB = (letter) => {
 // -- if currentWord array is empty/filter if not ---
 let checkWordStatus = (temp) => {
    console.log(guessWord);
-   console.log(currentWord);
-   console.log(words[randomNumber]);
-   console.log(mistakeArr);
-   console.log(guessWord.length);
+   // console.log(currentWord);
+   // console.log(words[randomNumber]);
+   // console.log(mistakeArr);
+   // console.log(guessWord.length);
    for (let i = 0; i < guessWord.length+1; i++) {
       let a = '-';
-      let temp = guessWord.indexOf(a,i);   
-      if (temp === -1) {
-         modalAppear('You win!');
+      let temp = guessWord.indexOf(a,i);    
+      // using includes() in array
+      if (guessWord.includes(a)) {
+         return false
       }else{
-         return false;
+         if (i === guessWord.length) {
+            modalAppear('You win!');  
+            scoreVar ++;
+            score();      
+         }
       }
    }
 }
@@ -231,13 +271,13 @@ let incorrect = (temp) => {
          }
    }
 }
+
 // ---- modal functions ----
 // -- open modal ---
 let modalAppear = (temp) => {
    document.getElementById('headingModal').innerHTML = temp;
    document.getElementById('modal').style.transform = 'scale(1)';
    document.getElementById('overlay').style.display = 'initial';
- 
  }
 
  // --- close modal ---

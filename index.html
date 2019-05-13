@@ -13,10 +13,19 @@
 <body onkeypress="readKey(event)">
       
     <div class="wrapper">
-        <div class="content">  
+        <div class="content">       
             <div class="primary">
-                <button id="hint">Hint</button>
-                <button id="next" onclick="nextWord()">Next</button>
+                <!-- <button id="hint">Hint</button> -->
+                <button id="next" onclick="nextWord()" >Next</button>
+                <div id="timer">
+                    <p id="timerPara">00:<span id="time"></span></p>
+                </div>
+                <div id="levelPaletteDiv" >
+                    <p id="levelPara"> Level: <span id="levelPalette"></span> </p>
+                </div>
+                <div id="scorePaletteDiv" >
+                    <p id="scorePara"> Score: <span id="scorePalette"></span> </p>
+                </div>  
                 <h1>Guess the word!? </h1>
                 <p id="dashPara"></p>
                 <div id="keyboard">

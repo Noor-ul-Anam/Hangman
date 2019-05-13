@@ -1,13 +1,44 @@
 // sass --watch sass/style.scss:css/style.css
 
 // ---- Variables -----
-$DarkBrown:#3d2a12;
+$DarkBrown:#33230f;
 $imageColor: #2c2c68;
 $fontColor: whitesmoke;
 
 //-----Mixins ---
-
-
+// hangman image essentials
+@mixin imageParts($marginTop , $height, $width) { 
+    margin-top: $marginTop;
+    height: $height;
+    width: $width;
+    background-color: $imageColor;
+    margin: auto;
+}
+// absolute position
+@mixin position( $top, $right, $bottom, $left){
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+@mixin buttonProp{
+    height: 40px;
+    width: 60px;
+    background-color: $imageColor;
+    border: none;
+    color: $fontColor;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+@mixin hoverActive {
+    &:hover{
+        box-shadow: 2px 5px 6px #888888;
+    } 
+    &:active{
+        box-shadow: 1px 1px 1px #888888;
+    }
+}
 
 *{
     box-sizing: border-box;
@@ -45,34 +76,17 @@ body{
                 color: $imageColor;
             }
             .close{
-                position: absolute;
+                @include position(20px ,20px ,auto ,auto );
                 background-color: $imageColor;
                 border: 3px solid $imageColor;
                 color: $fontColor;
                 border-radius: 10px;
-                right: 20px;
-                top: 20px;
-                &:hover{
-                    box-shadow: 2px 3px 6px #888888;
-                } 
-                &:active{
-                    box-shadow: 1px 1px 1px #888888;
-                }
+                @include hoverActive;
             }
             .next{
-                position: absolute;
-                background-color: $imageColor;
-                border: 3px solid $imageColor;
-                color: $fontColor;
-                border-radius: 10px;
-                right: 20px;
-                bottom: 20px;
-                &:hover{
-                    box-shadow: 2px 3px 6px #888888;
-                } 
-                &:active{
-                    box-shadow: 1px 1px 1px #888888;
-                }
+                @include position(auto,20px ,20px ,auto );
+                @extend .close;
+                @include hoverActive;             
             }
         }
 }
@@ -80,52 +94,58 @@ body{
     position: relative;
     .content{
         display: flex;
+        p{
+            color: $imageColor;
+        }
         .primary{
             position: relative;
             padding: 120px 20px ;
-            flex: 3;
-            #hint{
-                position: absolute;
-                bottom: 5%;
-                left: 10%;
-                height: 40px;
-                width: 60px;
-                background-color: $imageColor;
-                border: none;
-                color: $fontColor;
-                font-weight: bolder;
-                border-radius: 10px;
-                &:hover{
-                    box-shadow: 2px 5px 6px #888888;
-                } 
-                &:active{
-                    box-shadow: 1px 1px 1px #888888;
+            flex: 3; 
+            #timer{
+                height: 30px;
+                @include position(66px,0 ,0 ,39px );
+                #timerPara{
+                    font-weight: bold;
+                    #time{
+                        @extend #timerPara;
+                    }
                 }
             }
-            #next{
-                position: absolute;
-                bottom: 5%;
-                right: 10%;
-                height: 40px;
-                width: 60px;
-                background-color: $imageColor;
-                border: none;
-                color: $fontColor;
-                font-weight: bolder;
-                border-radius: 10px;
-                &:hover{
-                    box-shadow: 2px 5px 6px #888888;
-                } 
-                &:active{
-                    box-shadow: 1px 1px 1px #888888;
+            #scorePaletteDiv{
+                height: 30px;
+                @include position(46px,0 ,0 ,30px );
+                #scorePara{
+                    font-weight: bold;
+                    #scorePalette{
+                        @extend #scorePara;
+                    }
                 }
+            } 
+            #levelPaletteDiv{
+                height: 30px;
+                @include position(26px,0 ,0 ,30px );
+                #levelPara{
+                    font-weight: bold;
+                    #levelPalette{
+                        @extend #levelPara;
+                    }
+                }
+            }           
+            #hint{
+                @include position(auto ,auto ,5% ,10% );
+                @include buttonProp;
+                @include hoverActive;
+            }
+            #next{
+                //  % -> placeholder selector, more compact otput
+                @include position(auto ,10% ,5% , auto );                
+                @extend #hint;
             }
             h1{
                 color: $DarkBrown;
                 text-align: center;
             }
-            p{
-                color: $imageColor;
+            #dashPara{
                 text-align: center;
                 font-size: 40px;
             }
@@ -141,12 +161,7 @@ body{
                     height: 44px;
                     background-color: $DarkBrown;
                     margin: 7px;
-                    &:hover{
-                        box-shadow: 2px 5px 6px #888888;
-                    } 
-                    &:active{
-                        box-shadow: 1px 1px 1px #888888;
-                    }
+                    @include hoverActive;                
                     p{
                         margin: 10px;
                         font-size: 20px;
@@ -172,75 +187,38 @@ body{
                     }
                 }
                 #one{
-                    height: 10px;
-                    width: 150px;
-                    background-color: $imageColor;
-                    margin: auto;
+                    @include imageParts(auto,10px ,150px );
                 }
                 #two{
                     color: $imageColor;
                     margin-top: 75px;
                 }
                 #three{
-                    margin-top: 15px;
-                    height: 200px;
-                    width: 50px;
-                    background-color: $imageColor;
-                    margin: auto;
+                    @include imageParts(15px,200px ,50px );
                 }
                 #four{
-                    margin-top: 15px;
-                    height: 120px;
-                    width: 20px;
-                    background-color: $imageColor;
-                    margin: auto;
-                    position: absolute;
-                    top: 51%;
-                    left: 39%;
+                    @include imageParts(15px,120px ,20px );
+                    @include position(51% ,auto ,auto ,39% );
                     transform: rotate(27deg);                
                 }
                 #five{
-                    margin-top: 15px;
-                    height: 120px;
-                    width: 20px;
-                    background-color: $imageColor;
-                    margin: auto;
-                    position: absolute;
-                    top: 51%;
-                    left: 57%;
+                    @include imageParts(15px,120px ,20px );    
+                    @include position(51% ,auto ,auto ,57% );
                     transform: rotate(-27deg);                
                 }
                 #six{    
-                    margin-top: 15px;
-                    height: 120px;
-                    width: 20px;
-                    background-color: $imageColor;
-                    margin: auto;
-                    position: absolute;
-                    top: 94%;
-                    left: 41%;
+                    @include imageParts(15px,120px ,20px );
+                    @include position(94% ,auto ,auto ,41% );
                     transform: rotate(22deg);                
                 }
                 #seven{
-                    margin-top: 15px;
-                    height: 120px;
-                    width: 20px;
-                    background-color: $imageColor;
-                    margin: auto;
-                    position: absolute;
-                    top: 94%;
-                    left: 56%;
+                    @include imageParts(15px,120px ,20px );
+                    @include position(94% ,auto ,auto ,56% );
                     transform: rotate(-22deg);
                 }
                 #eight{
-                    margin-top: 15px;
-                    height: 83px;
-                    width: 11px;
-                    background-color: $imageColor;
-                    margin: auto;
-                    position: absolute;
-                    top: 18%;
-                    left: 49%;                
+                    @include imageParts(15px,83px ,11px );       
+                    @include position(18% ,auto ,auto ,49% );              
                 }
             }            
     }

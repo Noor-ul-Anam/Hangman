@@ -6,7 +6,7 @@ body {
   font-family: sans-serif;
   background-color: whitesmoke; }
   body .color {
-    background-color: #3d2a12; }
+    background-color: #33230f; }
   body #overlay {
     background-color: rgba(0, 0, 0, 0.5);
     height: 100vh;
@@ -30,28 +30,28 @@ body {
     body #modal h1 {
       text-align: center;
       color: #2c2c68; }
-    body #modal .close {
+    body #modal .close, body #modal .next {
       position: absolute;
+      top: 20px;
+      right: 20px;
+      bottom: auto;
+      left: auto;
       background-color: #2c2c68;
       border: 3px solid #2c2c68;
       color: whitesmoke;
-      border-radius: 10px;
-      right: 20px;
-      top: 20px; }
-      body #modal .close:hover {
-        box-shadow: 2px 3px 6px #888888; }
-      body #modal .close:active {
+      border-radius: 10px; }
+      body #modal .close:hover, body #modal .next:hover {
+        box-shadow: 2px 5px 6px #888888; }
+      body #modal .close:active, body #modal .next:active {
         box-shadow: 1px 1px 1px #888888; }
     body #modal .next {
       position: absolute;
-      background-color: #2c2c68;
-      border: 3px solid #2c2c68;
-      color: whitesmoke;
-      border-radius: 10px;
+      top: auto;
       right: 20px;
-      bottom: 20px; }
+      bottom: 20px;
+      left: auto; }
       body #modal .next:hover {
-        box-shadow: 2px 3px 6px #888888; }
+        box-shadow: 2px 5px 6px #888888; }
       body #modal .next:active {
         box-shadow: 1px 1px 1px #888888; }
 
@@ -59,12 +59,43 @@ body {
   position: relative; }
   .wrapper .content {
     display: flex; }
+    .wrapper .content p {
+      color: #2c2c68; }
     .wrapper .content .primary {
       position: relative;
       padding: 120px 20px;
       flex: 3; }
-      .wrapper .content .primary #hint {
+      .wrapper .content .primary #timer {
+        height: 30px;
         position: absolute;
+        top: 66px;
+        right: 0;
+        bottom: 0;
+        left: 39px; }
+        .wrapper .content .primary #timer #timerPara, .wrapper .content .primary #timer #timerPara #time {
+          font-weight: bold; }
+      .wrapper .content .primary #scorePaletteDiv {
+        height: 30px;
+        position: absolute;
+        top: 46px;
+        right: 0;
+        bottom: 0;
+        left: 30px; }
+        .wrapper .content .primary #scorePaletteDiv #scorePara, .wrapper .content .primary #scorePaletteDiv #scorePara #scorePalette {
+          font-weight: bold; }
+      .wrapper .content .primary #levelPaletteDiv {
+        height: 30px;
+        position: absolute;
+        top: 26px;
+        right: 0;
+        bottom: 0;
+        left: 30px; }
+        .wrapper .content .primary #levelPaletteDiv #levelPara, .wrapper .content .primary #levelPaletteDiv #levelPara #levelPalette {
+          font-weight: bold; }
+      .wrapper .content .primary #hint, .wrapper .content .primary #next {
+        position: absolute;
+        top: auto;
+        right: auto;
         bottom: 5%;
         left: 10%;
         height: 40px;
@@ -74,30 +105,20 @@ body {
         color: whitesmoke;
         font-weight: bolder;
         border-radius: 10px; }
-        .wrapper .content .primary #hint:hover {
+        .wrapper .content .primary #hint:hover, .wrapper .content .primary #next:hover {
           box-shadow: 2px 5px 6px #888888; }
-        .wrapper .content .primary #hint:active {
+        .wrapper .content .primary #hint:active, .wrapper .content .primary #next:active {
           box-shadow: 1px 1px 1px #888888; }
       .wrapper .content .primary #next {
         position: absolute;
-        bottom: 5%;
+        top: auto;
         right: 10%;
-        height: 40px;
-        width: 60px;
-        background-color: #2c2c68;
-        border: none;
-        color: whitesmoke;
-        font-weight: bolder;
-        border-radius: 10px; }
-        .wrapper .content .primary #next:hover {
-          box-shadow: 2px 5px 6px #888888; }
-        .wrapper .content .primary #next:active {
-          box-shadow: 1px 1px 1px #888888; }
+        bottom: 5%;
+        left: auto; }
       .wrapper .content .primary h1 {
-        color: #3d2a12;
+        color: #33230f;
         text-align: center; }
-      .wrapper .content .primary p {
-        color: #2c2c68;
+      .wrapper .content .primary #dashPara {
         text-align: center;
         font-size: 40px; }
       .wrapper .content .primary #keyboard {
@@ -110,7 +131,7 @@ body {
           display: inline-block;
           width: 44px;
           height: 44px;
-          background-color: #3d2a12;
+          background-color: #33230f;
           margin: 7px; }
           .wrapper .content .primary #keyboard .wordKB:hover {
             box-shadow: 2px 5px 6px #888888; }
@@ -129,12 +150,13 @@ body {
         position: relative; }
         .wrapper .content .secondary #img .paraImage {
           text-align: center;
-          color: #3d2a12;
+          color: #33230f;
           font: 5em/0.7em sans-serif;
           visibility: hidden; }
           .wrapper .content .secondary #img .paraImage.visible {
             visibility: visible; }
         .wrapper .content .secondary #img #one {
+          margin-top: auto;
           height: 10px;
           width: 150px;
           background-color: #2c2c68;
@@ -156,6 +178,8 @@ body {
           margin: auto;
           position: absolute;
           top: 51%;
+          right: auto;
+          bottom: auto;
           left: 39%;
           transform: rotate(27deg); }
         .wrapper .content .secondary #img #five {
@@ -166,6 +190,8 @@ body {
           margin: auto;
           position: absolute;
           top: 51%;
+          right: auto;
+          bottom: auto;
           left: 57%;
           transform: rotate(-27deg); }
         .wrapper .content .secondary #img #six {
@@ -176,6 +202,8 @@ body {
           margin: auto;
           position: absolute;
           top: 94%;
+          right: auto;
+          bottom: auto;
           left: 41%;
           transform: rotate(22deg); }
         .wrapper .content .secondary #img #seven {
@@ -186,6 +214,8 @@ body {
           margin: auto;
           position: absolute;
           top: 94%;
+          right: auto;
+          bottom: auto;
           left: 56%;
           transform: rotate(-22deg); }
         .wrapper .content .secondary #img #eight {
@@ -196,6 +226,8 @@ body {
           margin: auto;
           position: absolute;
           top: 18%;
+          right: auto;
+          bottom: auto;
           left: 49%; }
 
 /*# sourceMappingURL=style.css.map */
