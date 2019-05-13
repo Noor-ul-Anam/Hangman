@@ -119,7 +119,6 @@ let nextWord = () => {
       let temp2= document.getElementById(`${temp}`);
       temp2.style.backgroundColor = '#3d2a12';
    }
-   clearTimer(); 
    setTimer();
 }
 
@@ -275,6 +274,7 @@ let incorrect = (temp) => {
 // ---- modal functions ----
 // -- open modal ---
 let modalAppear = (temp) => {
+   clearTimer();
    document.getElementById('headingModal').innerHTML = temp;
    document.getElementById('modal').style.transform = 'scale(1)';
    document.getElementById('overlay').style.display = 'initial';
